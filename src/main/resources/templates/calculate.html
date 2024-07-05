@@ -1,22 +1,31 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>UnitCostCalculater</title>
+    <title>単価入力画面</title>
+    <!-- Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
 </head>
 <body>
-    <h1>単価計算アプリ</h1>
-    <form th:action="@{/caluculater/result}" th:object="${unitCost}" method="post">
-        <div>
-            <label for="unitCost">あなたの月の契約単価を入力してください。</label>
-            <input type="number" th:field="*{unitCost}" id="unitCost" name="unitCost">
-        </div>
-        <div>
-            <label for="percentage">単価の何％を貰えるのか入力してください。</label>
-            <input type="number" th:field="*{percentage}" id="percentage" name="percentage">
-        </div>
-        <div>
-            <button type="submit">計算する</button>
-        </div>
-    </form>
+	<header></header>
+    <div class="container">
+    	<div class="card">
+    		<div class="card-body">
+		        <h1>単価計算アプリ</h1>
+			    <form th:action="@{/caluculater/result}" th:object="${unitCost}" method="post">
+					<div class="mb-3">
+				  		<label for="unitCost" class="form-label">あなたの月の契約単価を入力してください。</label>
+				 		 <input type="number" class="form-control" th:field="*{unitCost}" id="unitCost" name="unitCost" placeholder="500000">
+					</div>
+					<div class="mb-3">
+				  		<label for="percentage" class="form-label">単価の何％を貰えるのか入力してください。</label>
+				 		<input type="number" class="form-control" th:field="*{percentage}" id="percentage" name="percentage" placeholder="60">
+					</div>
+				    <button class="badge rounded-pill bg-light text-dark" type="submit">計算する</button>
+			    </form>
+    		</div>
+    	</div>
+    </div>
+    <footer></footer>
 </body>
 </html>

@@ -1,11 +1,36 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Result</title>
+    <title>単価計算結果画面</title>
+    <!-- Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
 </head>
 <body>
-<div>あなたの月収は...<span th:text="${unitCost.totalCost}"></span>円です。</div>
-<div>あなたの年収は...<span th:text="${unitCost.anualIncome}"></span>円です。</div>
-<a th:href="@{/caluculater}">戻る</a>
+	<header></header>
+    <div class="container">
+    	<div class="card">
+	    	<div class="card-header">
+	    	あなたの月収は...
+	    	</div>
+    		<div class="card-body">
+				<span th:text="${unitCost.totalCost}"></span>円です。
+			</div>
+		 	<div class="card-header">
+	    	あなたの年収は...
+	    	</div>
+	    	<div class="card-body">
+				<span th:text="${unitCost.anualIncome}"></span>円です。
+			</div>
+	    	<div class="card-header">
+		    	日本の年収平均と比較すると...
+		    </div>
+		    <div class="card-body">
+	    		<span th:text="${message}"></span>
+		    </div>
+		    <a th:href="@{/caluculater}" class="badge rounded-pill bg-light text-dark" >戻る</a>
+		</div>
+    </div>
+	<footer></footer>
 </body>
 </html>
