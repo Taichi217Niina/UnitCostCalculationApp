@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Result</title>
+</head>
+<body>
+<div>あなたの月収は...<span th:text="${unitCost.totalCost}"></span>円です。</div>
+<div>あなたの年収は...<span th:text="${unitCost.anualIncome}"></span>円です。</div>
+<a th:href="@{/caluculater}">戻る</a>
+</body>
+</html>

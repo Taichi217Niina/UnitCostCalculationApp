@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>UnitCostCalculater</title>
+</head>
+<body>
+    <h1>単価計算アプリ</h1>
+    <form th:action="@{/caluculater/result}" th:object="${unitCost}" method="post">
+        <div>
+            <label for="unitCost">あなたの月の契約単価を入力してください。</label>
+            <input type="number" th:field="*{unitCost}" id="unitCost" name="unitCost">
+        </div>
+        <div>
+            <label for="percentage">単価の何％を貰えるのか入力してください。</label>
+            <input type="number" th:field="*{percentage}" id="percentage" name="percentage">
+        </div>
+        <div>
+            <button type="submit">計算する</button>
+        </div>
+    </form>
+</body>
+</html>
