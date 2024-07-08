@@ -2,17 +2,18 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>単価入力画面</title>
+    <!-- CSS link -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
     <!-- Bootstrap CSS link -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 </head>
 <body>
-	<header></header>
+	<div th:replace="common/header :: header"></div>
     <div class="container">
     	<div class="card">
     		<div class="card-body">
-		        <h1>単価計算アプリ</h1>
-			    <form th:action="@{/caluculater/result}" th:object="${unitCost}" method="post">
+			    <form th:action="@{/caluculater/result}" th:object="${unitCostForm}" method="post">
 					<div class="mb-3">
 				  		<label for="unitCost" class="form-label">あなたの月の契約単価を入力してください。</label>
 				 		 <input type="number" class="form-control" th:field="*{unitCost}" id="unitCost" name="unitCost" placeholder="500000">
@@ -26,6 +27,6 @@
     		</div>
     	</div>
     </div>
-    <footer></footer>
+	<div th:replace="common/footer :: footer"></div>
 </body>
 </html>

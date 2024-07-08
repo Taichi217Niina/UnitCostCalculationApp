@@ -2,12 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>単価計算結果画面</title>
+    <!-- CSS link -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
     <!-- Bootstrap CSS link -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 </head>
 <body>
-	<header></header>
+	<div th:replace="common/header :: header"></div>
     <div class="container">
     	<div class="card">
 	    	<div class="card-header">
@@ -31,6 +33,6 @@
 		    <a th:href="@{/caluculater}" class="badge rounded-pill bg-light text-dark" >戻る</a>
 		</div>
     </div>
-	<footer></footer>
+	<div th:replace="common/footer :: footer"></div>
 </body>
 </html>
