@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>単価入力画面</title>
+    <!-- CSS link -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
+    <!-- Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+</head>
+<body>
+	<div th:replace="common/header :: header"></div>
+    <div class="container">
+    	<div class="card">
+    		<div class="card-body">
+			    <form th:action="@{/caluculater/result}" th:object="${unitCostForm}" method="post">
+					<div class="mb-3">
+				  		<label for="unitCost" class="form-label">あなたの月の契約単価を入力してください。</label>
+				 		 <input type="number" class="form-control" th:field="*{unitCost}" id="unitCost" name="unitCost" placeholder="500000">
+					</div>
+					<div class="mb-3">
+				  		<label for="percentage" class="form-label">単価の何％を貰えるのか入力してください。</label>
+				 		<input type="number" class="form-control" th:field="*{percentage}" id="percentage" name="percentage" placeholder="60">
+					</div>
+				    <button class="badge rounded-pill bg-light text-dark" type="submit">計算する</button>
+			    </form>
+    		</div>
+    	</div>
+    </div>
+	<div th:replace="common/footer :: footer"></div>
+</body>
+</html>

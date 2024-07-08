@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>単価入力画面</title>
+    <!-- CSS link -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
+    <!-- Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+</head>
+<body>
+	<div th:replace="common/header :: header"></div>
+    <div class="container">
+    	<div class="card">
+    		<div class="card-body">
+			    <h3>CalculaterDxについて</h3>
+			    <p>CalculaterDxでは、単価計算・年収算出が行えるアプリです。</p>
+			    <p>例: <b>単価報酬型の働き方をしているAさん</b></p>
+			    <p>毎月単価60万契約をしており、単価の60%がAさんの給与</p>
+			    <p>↑毎月のAさんの給与と年収計算をしたいときに、CaluculaterDXを使用する</p>
+			    
+			    <h4>使用方法について</h4>
+			    <p>あなたの月の契約単価を入力してください。→数字で単価記入(例:600000)</p>
+			    <p>単価の何％を貰えるのか入力してください。→数字でパーセンテージ記入(例:60)</p>
+			    <p>最後に、計算ボタンを押下すると計算結果が算出され、毎月の取得金額と年収が出力される</p>
+    		</div>
+    	</div>
+    </div>
+	<div th:replace="common/footer :: footer"></div>
+</body>
+</html>
