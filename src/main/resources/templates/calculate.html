@@ -13,7 +13,7 @@
     <div class="container">
     	<div class="card">
     		<div class="card-body">
-			    <form th:action="@{/caluculater/result}" th:object="${unitCostForm}" method="post">
+			    <form th:action="@{/calculator/result}" th:object="${unitCostForm}" method="post">
 					<div class="mb-3">
 				  		<label for="unitCost" class="form-label">あなたの月の契約単価を入力してください。</label>
 				 		 <input type="number" class="form-control" th:field="*{unitCost}" id="unitCost" name="unitCost" placeholder="500000">

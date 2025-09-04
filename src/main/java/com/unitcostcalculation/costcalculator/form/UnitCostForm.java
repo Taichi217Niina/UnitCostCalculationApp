@@ -10,9 +10,9 @@ import lombok.Data;
  */
 @Data
 public class UnitCostForm {
-	
+
 	private int unitCost;
-	
+
 	private int percentage;
 
 }

@@ -6,10 +6,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.unitcostcalculation.costcalculator.common.CalculateConstant;
 import com.unitcostcalculation.costcalculator.dto.UnitCostDto;
 import com.unitcostcalculation.costcalculator.form.UnitCostForm;
 import com.unitcostcalculation.costcalculator.service.CalculateService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * 単価計算用Controllerクラス.
@@ -18,9 +19,19 @@ import com.unitcostcalculation.costcalculator.service.CalculateService;
  *
  */
 @Controller
-@RequestMapping("/caluculater")
+@RequestMapping("/calculator")
+
 public class CalculateController {
-	
+
+	// 年収の閾値を定数として定義
+	private static final int ANNUAL_INCOME_LOW = 3_300_000;
+	private static final int ANNUAL_INCOME_SOMEWHAT_LOW = 3_800_000;
+	private static final int ANNUAL_INCOME_AVERAGE = 4_500_000;
+	private static final int ANNUAL_INCOME_SOMEWHAT_HIGH = 5_200_000;
+
+	@Autowired
+	private CalculateService calculateService;
+
 	@GetMapping("/top")
 	public String index() {
 		return "index";
@@ -28,10 +39,10 @@ public class CalculateController {
 
 	@GetMapping
 	public String unitCostInputList(Model model) {
-		model.addAttribute("unitCostForm", new UnitCostForm());	
+		model.addAttribute("unitCostForm", new UnitCostForm());
 		return "calculate";
 	}
-	
+
 	@GetMapping("/result")
 	public String unitCostResult() {
 		return "calculated";
@@ -39,30 +50,29 @@ public class CalculateController {
 
 	@PostMapping("/result")
 	public String unitCostInputInfo(Model model, UnitCostForm form) {
-		// 入力情報を元に単価計算算出
-		UnitCostDto unitCostResult = CalculateService.doCalculate(form);
+		// 単価計算処理を呼び出す
+		UnitCostDto unitCostResult = calculateService.doCalculate(form);
 
-		// 年収平均メッセージ
+		// 年収平均メッセージの設定
 		String message = getMessageForAnnualIncome(unitCostResult.getAnualIncome());
 		model.addAttribute("message", message);
 		model.addAttribute("unitCost", unitCostResult);
 		return "calculated";
 	}
-	
+
 	// 年収に対するメッセージを取得するヘルパーメソッド
-    private String getMessageForAnnualIncome(int annualIncome) {
-		if (annualIncome <= 3300000 && annualIncome >= 0) {
+	private String getMessageForAnnualIncome(int annualIncome) {
+		if (annualIncome <= ANNUAL_INCOME_LOW && annualIncome >= 0) {
 			return "平均年収より低い年収です。";
-		} else if (annualIncome <= 3800000 && annualIncome > 3300000) {
+		} else if (annualIncome <= ANNUAL_INCOME_SOMEWHAT_LOW && annualIncome > ANNUAL_INCOME_LOW) {
 			return "平均年収よりやや低い年収です。";
-		} else if (annualIncome <= 4500000 && annualIncome > 3800000) {
+		} else if (annualIncome <= ANNUAL_INCOME_AVERAGE && annualIncome > ANNUAL_INCOME_SOMEWHAT_LOW) {
 			return "平均年収です。";
-		} else if (annualIncome <= 5200000 && annualIncome > 4500000) {
+		} else if (annualIncome <= ANNUAL_INCOME_SOMEWHAT_HIGH && annualIncome > ANNUAL_INCOME_AVERAGE) {
 			return "平均年収よりやや高い年収です。";
 		} else {
 			return "平均年収より高い年収です。";
 		}
-    	
-    }
+	}
 
 }
